@@ -5,15 +5,24 @@
 
 
 
-<a class='movies-link' href='/movies'>
-<img src='/images/movie-icon.png'>
+<a href='/movies'>
+    <img src='/images/movie-icon.png'>
+    <p>Movies</p>
 </a>
 
 
-<a class='celebs-link' href='/celebrities'>
-<img src='/images/celeb-icon.png'>
+<a href='/celebrities'>
+    <img src='/images/celeb-icon.png'>
+    <p>Celebrities</p>
 </a>
 
+
+{{#if theUser}}
+<a href='/users/secret'>
+    <img src='/images/profile-icon.jpg'>
+    <p>Secret</p>
+</a>
+{{/if}}
 
 
 

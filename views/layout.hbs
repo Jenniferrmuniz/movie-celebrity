@@ -49,12 +49,14 @@
             aria-haspopup="true" aria-expanded="false">
             Users
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            {{#if currentUser}}
-            <a href="users/secret">Secret Page</a>
-            <form action="/users/logout" method="POST">
-              <button>Logout</button>
-            </form>
+          <div class="dropdown-menu user-div" aria-labelledby="navbarDropdown">
+            {{#if theUser}}
+            <a class='dropdown-item' href="users/secret">Secret Page</a>
+            <a class='dropdown-item'>
+              <form id='logout-btn' action="/users/logout" method="POST">
+                <button>Logout</button>
+              </form>
+            </a>
             {{else}}
             <a class="dropdown-item" href="/users/login">Log In</a>
             <a class="dropdown-item" href="/users/signup">Sign Up</a>

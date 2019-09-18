@@ -11,6 +11,7 @@ const path         = require('path');
 
 const session    = require("express-session");
 const MongoStore = require("connect-mongo")(session);
+const flash      = require("connect-flash");
 
 
 mongoose
@@ -65,10 +66,15 @@ app.use(session({
 }));
 
 
+app.use((flash()));
+
+//
 
 
+
+//creating universal variable insdie all the hbs files
 app.use((req, res, next) =>{
-  res.locals.currentUser = req.session.currentUser;
+  res.locals.theUser = req.session.currentUser;
   next();
 })
 

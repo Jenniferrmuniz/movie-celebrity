@@ -48,6 +48,10 @@ router.post('/login', (req, res, next) => {
         .then((userFromDB) => {
 
             if (!userFromDB) {
+
+
+                req.flash('error', 'sorry this username does not exist');
+
                 res.redirect('/');
             }
 
