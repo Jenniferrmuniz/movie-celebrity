@@ -9,6 +9,9 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+const session    = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+
 
 mongoose
   .connect('mongodb://localhost/celebrity', {useNewUrlParser: true})
@@ -51,6 +54,25 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
+
+app.use(session({
+  secret: "basic-auth-secret",
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60 // 1 day
+  })
+}));
+
+
+
+
+app.use((req, res, next) =>{
+  res.locals.currentUser = req.session.currentUser;
+  next();
+})
+
+
 const index = require('./routes/index');
 app.use('/', index);
 
@@ -61,6 +83,12 @@ app.use('/celebrities', celebrity);
 
 const movie = require('./routes/movies');
 app.use('/movies', movie);
+
+
+const user = require('./routes/users');
+app.use('/users', user);
+
+
 
 
 module.exports = app;
