@@ -1,10 +1,17 @@
 
 
 
+<div class='loggedin-main-page'>
+
+
+{{#if theUser}}
+<a id='secret-profile' href='/users/secret'>
+    <img src='/images/profile-icon.png'>
+    <p>Profile</p>
+</a>
+{{/if}}
+
 <div class='main-page'>
-
-
-
 <a href='/movies'>
     <img src='/images/movie-icon.png'>
     <p>Movies</p>
@@ -16,13 +23,9 @@
     <p>Celebrities</p>
 </a>
 
+</div>
 
-{{#if theUser}}
-<a href='/users/secret'>
-    <img src='/images/profile-icon.jpg'>
-    <p>Secret</p>
-</a>
-{{/if}}
+
 
 
 

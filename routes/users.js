@@ -52,7 +52,7 @@ router.post('/login', (req, res, next) => {
 
                 req.flash('error', 'sorry this username does not exist');
 
-                res.redirect('/');
+                res.redirect('/users/login');
             }
 
             if (bcrypt.compareSync(password, userFromDB.password)) {
@@ -62,7 +62,8 @@ router.post('/login', (req, res, next) => {
                 res.redirect("/");
             }
             else {
-                res.redirect('/')
+                req.flash('error', 'incorrect password');
+                res.redirect('/users/login')
             }
         })
         .catch((err) => {

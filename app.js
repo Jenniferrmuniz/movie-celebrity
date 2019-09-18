@@ -68,15 +68,17 @@ app.use(session({
 
 app.use((flash()));
 
-//
-
-
-
-//creating universal variable insdie all the hbs files
-app.use((req, res, next) =>{
+app.use((req, res, next)=>{
   res.locals.theUser = req.session.currentUser;
+  res.locals.errorMessage = req.flash('error');
   next();
 })
+// creating a universal variable inside all the hbs files called theUser
+// this variable is equal to the user in the session
+// that means if there's no user in the session, this variable will be null/undefined (not sure which one)
+
+
+
 
 
 const index = require('./routes/index');
